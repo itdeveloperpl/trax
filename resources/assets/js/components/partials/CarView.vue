@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     fetch() {
-      axios.get(traxAPI.getCarEndpoint(this.$route.params.id))
+      axios.get(traxAPI.getCarEndpoint(this.$route.params.code))
         .then(response => {
           this.year = response.data.data.year;
           this.make = response.data.data.make;
@@ -60,7 +60,7 @@ export default {
         });
     },
     deleteSelected() {
-      axios.delete(traxAPI.deleteCarEndpoint(this.$route.params.id))
+      axios.delete(traxAPI.deleteCarEndpoint(this.$route.params.code))
         .then(response => {
           this.$router.push('/cars');
         }).catch(e => {

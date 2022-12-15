@@ -13,7 +13,7 @@ export default function (Vue) {
       component: Vue.component('cars-view'),
     },
     {
-      path: '/cars/:id',
+      path: '/cars/:code',
       component: Vue.component('car-view')
     },
     {

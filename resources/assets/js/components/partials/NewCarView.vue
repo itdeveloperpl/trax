@@ -50,6 +50,7 @@ export default {
           make: this.make,
           model: this.model
         })
+
           .then(response => {
             this.$router.push('/cars')
           })

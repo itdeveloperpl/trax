@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Http\Resources\UserResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,20 @@ use Carbon\Carbon;
 */
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 })->middleware('auth:api');
 
+Route::get('cars','CarsController@index')->middleware(['auth:api','can:viewAny,App\Models\Car']);;
+Route::get('cars/{car}','CarsController@show')->middleware(['auth:api','can:view,App\Models\Car']);;
+Route::put('cars/{car}','CarsController@update')->middleware(['auth:api','can:update,App\Models\Car']);
+Route::post('cars/{car}','CarsController@store')->middleware(['auth:api','can:create,App\Models\Car']);
+Route::delete('cars/{car}','CarsController@destroy')->middleware(['auth:api','can:delete,App\Models\Car']);;
+
+Route::get('trips','TripsController@index')->middleware(['auth:api','can:viewAny,App\Models\Trip']);
+Route::get('trips/{trip}','TripsController@show')->middleware(['auth:api','can:view,App\Models\Trip']);;
+Route::put('trips/{trip}','TripsController@update')->middleware(['auth:api','can:update,App\Models\Trip']);
+Route::post('trips','TripsController@store')->middleware(['auth:api','can:create,App\Models\Trip']);
+Route::delete('trips/{trip}','TripsController@destroy')->middleware(['auth:api','can:delete,App\Models\Trip']);
 
 //////////////////////////////////////////////////////////////////////////
 /// Mock Endpoints To Be Replaced With RESTful API.

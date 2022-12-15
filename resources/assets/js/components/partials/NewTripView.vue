@@ -28,7 +28,7 @@
       submit
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
-
+<p class="error--text">{{errorMessage}}</p>
   </v-form>
 </template>
 
@@ -49,7 +49,8 @@ export default {
       cars: [],
       date: null,
       car: null,
-      miles: null
+      miles: null,
+      errorMessage: null,
     }
   },
   watch: {},
@@ -86,7 +87,7 @@ export default {
             this.$router.push('/trips')
           })
           .catch(e => {
-            console.log(e);
+            this.errorMessage = e.response.data.message
           });
       }
     },

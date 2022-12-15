@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
+use App\Models\Car;
+use App\Models\User;
+use App\Observers\CarObserver;
+use App\Observers\UserObserver;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+        Car::observe(CarObserver::class);
+        User::observe(UserObserver::class);
     }
 }

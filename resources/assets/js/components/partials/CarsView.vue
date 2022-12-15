@@ -15,7 +15,7 @@
           class="elevation-1"
         >
           <template slot="items" slot-scope="props">
-            <tr @click="rowClicked(props.item.id)">
+            <tr @click="rowClicked(props.item.code)">
               <td>{{ props.item.year }}</td>
               <td>{{ props.item.make }}</td>
               <td>{{ props.item.model }}</td>
@@ -57,8 +57,8 @@ export default {
           console.log(e);
         });
     },
-    rowClicked(id) {
-      this.$router.push('/cars/' + id);
+    rowClicked(code) {
+      this.$router.push('/cars/' + code);
     },
     addCarSelected() {
       this.$router.push('/new-car');

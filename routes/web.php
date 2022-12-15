@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken('test');
+    return ['token' => $token->plainTextToken];
+});
